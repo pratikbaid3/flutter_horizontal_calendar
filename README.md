@@ -15,7 +15,7 @@ Flutter UI package to interact with canelder in horizontal view. This package al
 ### Import
 Add the following import in the ```pubspec.yaml``` file
 ```yaml
-client_sse:
+simple_horizontal_calendar:
     git:
       url: https://github.com/pratikbaid3/flutter_horizontal_calendar
 ```
