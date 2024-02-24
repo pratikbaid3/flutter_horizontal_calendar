@@ -5,7 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-import horizontal_calendar
+import flutter_horizontal_calendar
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   HorizontalCalendarPlugin.register(with: registry.registrar(forPlugin: "HorizontalCalendarPlugin"))

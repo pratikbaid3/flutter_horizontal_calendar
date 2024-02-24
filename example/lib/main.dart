@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import 'package:flutter/services.dart';
-import 'package:horizontal_calendar/horizontal_calendar.dart';
-import 'package:horizontal_calendar/utils/app_color.dart';
+import 'package:flutter_horizontal_calendar/horizontal_calendar.dart';
+import 'package:flutter_horizontal_calendar/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
 void main() {

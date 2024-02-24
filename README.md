@@ -1,15 +1,29 @@
-# horizontal_calendar
+# Flutter Horizontal Calendar
 
-A new Flutter project.
+Flutter UI package to interact with canelder in horizontal view. This package also supports custom header and chile element.
+
+### Features:
+* Interact with horizontal scrollable calendar
+* Add custom child
+* Add custom header
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+### Import
+Add the following import in the ```pubspec.yaml``` file
+```yaml
+client_sse:
+    git:
+      url: https://github.com/pratikbaid3/flutter_horizontal_calendar
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+### Example
+```dart
+HorizontalCalender(
+    onSelected: (DateTime date) {
+        setState(() {
+          selectedDate = DateFormat('dd MMMM, yyyy').format(date);
+        });
+    },
+),
+```
