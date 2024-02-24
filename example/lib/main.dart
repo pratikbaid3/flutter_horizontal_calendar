@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              HorizontalCalenderWidget(
+              HorizontalCalender(
                 onSelected: (DateTime date) {
                   setState(() {
                     selectedDate = DateFormat('dd MMMM, yyyy').format(date);

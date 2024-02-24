@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:horizontal_calendar/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
-class HorizontalCalenderWidget extends StatefulWidget {
-  const HorizontalCalenderWidget(
+class HorizontalCalender extends StatefulWidget {
+  const HorizontalCalender(
       {super.key, required this.onSelected, this.child, this.header});
   final Widget Function(
     DateTime date,
@@ -12,11 +12,10 @@ class HorizontalCalenderWidget extends StatefulWidget {
   final Widget Function(DateTime date)? header;
   final Function(DateTime date) onSelected;
   @override
-  State<HorizontalCalenderWidget> createState() =>
-      _HorizontalCalenderWidgetState();
+  State<HorizontalCalender> createState() => _HorizontalCalenderState();
 }
 
-class _HorizontalCalenderWidgetState extends State<HorizontalCalenderWidget> {
+class _HorizontalCalenderState extends State<HorizontalCalender> {
   final calenderPageController = PageController(initialPage: 1);
   List<List<DateTime>> dateList = [];
   String scrollMonthYear = "";
