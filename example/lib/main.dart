@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_horizontal_calendar/horizontal_calendar.dart';
-import 'package:flutter_horizontal_calendar/utils/app_color.dart';
+import 'package:simple_horizontal_calendar/horizontal_calendar.dart';
+import 'package:simple_horizontal_calendar/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
 void main() {
@@ -21,7 +21,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      selectedDate = DateFormat('dd MMMM, yyyy').format(DateTime.now());
+      setState(() {
+        selectedDate = DateFormat('dd MMMM, yyyy').format(DateTime.now());
+      });
     });
     super.initState();
   }

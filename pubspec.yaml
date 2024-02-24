@@ -1,4 +1,4 @@
-name: flutter_horizontal_calendar
+name: simple_horizontal_calendar
 description: Flutter UI package to interact with canelder in horizontal view. This package also supports custom header and chile element.
 version: 0.0.1
 homepage: https://github.com/pratikbaid3/flutter_horizontal_calendar

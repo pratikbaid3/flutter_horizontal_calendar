@@ -1,28 +1,28 @@
 PODS:
   - Flutter (1.0.0)
-  - horizontal_calendar (0.0.1):
-    - Flutter
   - integration_test (0.0.1):
+    - Flutter
+  - simple_horizontal_calendar (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - horizontal_calendar (from `.symlinks/plugins/horizontal_calendar/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - simple_horizontal_calendar (from `.symlinks/plugins/simple_horizontal_calendar/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  horizontal_calendar:
-    :path: ".symlinks/plugins/horizontal_calendar/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
+  simple_horizontal_calendar:
+    :path: ".symlinks/plugins/simple_horizontal_calendar/ios"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  horizontal_calendar: dee52f886d826efa9c7c25d886e85f17aea18be4
   integration_test: 13825b8a9334a850581300559b8839134b124670
+  simple_horizontal_calendar: b379e5fa1cf2cb764508ac18233275a936ce3ac8
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: 7be2f5f74864d463a8ad433546ed1de7e0f29aef
 
 COCOAPODS: 1.12.1

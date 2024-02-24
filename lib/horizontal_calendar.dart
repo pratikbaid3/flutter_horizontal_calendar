@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_horizontal_calendar/utils/app_color.dart';
+import 'package:simple_horizontal_calendar/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
 class HorizontalCalender extends StatefulWidget {

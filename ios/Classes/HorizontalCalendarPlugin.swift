@@ -3,7 +3,7 @@ import UIKit
 
 public class HorizontalCalendarPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "horizontal_calendar", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "simple_horizontal_calendar", binaryMessenger: registrar.messenger())
     let instance = HorizontalCalendarPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
