@@ -7,6 +7,9 @@ Flutter UI package to interact with canelder in horizontal view. This package al
 * Add custom child
 * Add custom header
 
+### Sample
+<img width="292" alt="Screenshot 2024-02-24 at 11 31 49 PM" src="https://github.com/pratikbaid3/flutter_horizontal_calendar/assets/52864956/00347cce-b23c-459a-9db0-3a9cc4478e17">
+
 ## Getting Started
 
 ### Import
