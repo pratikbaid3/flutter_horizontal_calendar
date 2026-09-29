@@ -3,14 +3,32 @@ import 'package:simple_horizontal_calendar/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
 class HorizontalCalender extends StatefulWidget {
-  const HorizontalCalender(
-      {super.key, required this.onSelected, this.child, this.header});
+  const HorizontalCalender({
+    super.key,
+    required this.onSelected,
+    this.child,
+    this.header,
+    this.selectedBackgroundColor,
+    this.unselectedBackgroundColor,
+    this.selectedDateTextColor,
+    this.unselectedDateTextColor,
+    this.selectedWeekdayTextColor,
+    this.unselectedWeekdayTextColor,
+  });
   final Widget Function(
     DateTime date,
     bool isSelected,
   )? child;
   final Widget Function(DateTime date)? header;
   final Function(DateTime date) onSelected;
+
+  final Color? selectedBackgroundColor;
+  final Color? unselectedBackgroundColor;
+  final Color? selectedDateTextColor;
+  final Color? unselectedDateTextColor;
+  final Color? selectedWeekdayTextColor;
+  final Color? unselectedWeekdayTextColor;
+
   @override
   State<HorizontalCalender> createState() => _HorizontalCalenderState();
 }
@@ -154,6 +172,18 @@ class _HorizontalCalenderState extends State<HorizontalCalender> {
                                     isSelected: DateTime(
                                             date.year, date.month, date.day)
                                         .isAtSameMomentAs(currentSelectedDate),
+                                    selectedBackgroundColor:
+                                        widget.selectedBackgroundColor,
+                                    unselectedBackgroundColor:
+                                        widget.unselectedBackgroundColor,
+                                    selectedDateTextColor:
+                                        widget.selectedDateTextColor,
+                                    unselectedDateTextColor:
+                                        widget.unselectedDateTextColor,
+                                    selectedWeekdayTextColor:
+                                        widget.selectedWeekdayTextColor,
+                                    unselectedWeekdayTextColor:
+                                        widget.unselectedWeekdayTextColor,
                                   ),
                           ),
                         )
@@ -168,14 +198,26 @@ class _HorizontalCalenderState extends State<HorizontalCalender> {
 }
 
 class CalenderItemWidget extends StatelessWidget {
-  const CalenderItemWidget({
-    super.key,
-    required this.date,
-    this.isSelected = false,
-  });
+  const CalenderItemWidget(
+      {super.key,
+      required this.date,
+      this.isSelected = false,
+      this.selectedBackgroundColor,
+      this.unselectedBackgroundColor,
+      this.selectedDateTextColor,
+      this.unselectedDateTextColor,
+      this.selectedWeekdayTextColor,
+      this.unselectedWeekdayTextColor});
 
   final DateTime date;
   final bool isSelected;
+
+  final Color? selectedBackgroundColor;
+  final Color? unselectedBackgroundColor;
+  final Color? selectedDateTextColor;
+  final Color? unselectedDateTextColor;
+  final Color? selectedWeekdayTextColor;
+  final Color? unselectedWeekdayTextColor;
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +225,9 @@ class CalenderItemWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: isSelected ? AppColor.purplePrimaryColor : Colors.transparent,
+        color: isSelected
+            ? selectedBackgroundColor ?? AppColor.purplePrimaryColor
+            : unselectedBackgroundColor ?? Colors.transparent,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -191,15 +235,21 @@ class CalenderItemWidget extends StatelessWidget {
           Text(
             "${date.day}",
             style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: isSelected ? AppColor.basicWhite : AppColor.basicBlack),
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: isSelected
+                  ? selectedDateTextColor ?? AppColor.basicWhite
+                  : unselectedDateTextColor ?? AppColor.basicBlack,
+            ),
           ),
           Text(
             DateFormat('E').format(date),
             style: TextStyle(
-                fontSize: 12,
-                color: isSelected ? AppColor.basicWhite : AppColor.basicBlack),
+              fontSize: 12,
+              color: isSelected
+                  ? selectedWeekdayTextColor ?? AppColor.basicWhite
+                  : unselectedWeekdayTextColor ?? AppColor.basicBlack,
+            ),
           ),
         ],
       ),
