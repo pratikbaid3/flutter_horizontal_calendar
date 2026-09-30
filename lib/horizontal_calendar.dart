@@ -3,77 +3,91 @@ import 'package:simple_horizontal_calendar/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
 class HorizontalCalender extends StatefulWidget {
-  const HorizontalCalender(
-      {super.key, required this.onSelected, this.child, this.header});
+  const HorizontalCalender({
+    super.key,
+    required this.onSelected,
+    this.child,
+    this.header,
+    this.initialDate,
+  });
   final Widget Function(
     DateTime date,
     bool isSelected,
   )? child;
   final Widget Function(DateTime date)? header;
   final Function(DateTime date) onSelected;
+  final DateTime? initialDate;
   @override
   State<HorizontalCalender> createState() => _HorizontalCalenderState();
 }
 
 class _HorizontalCalenderState extends State<HorizontalCalender> {
-  final calenderPageController = PageController(initialPage: 1);
-  List<List<DateTime>> dateList = [];
+  late final PageController calenderPageController;
+  late final List<List<DateTime>> dateList;
   String scrollMonthYear = "";
-  DateTime selectedDate = DateTime.now();
-  void initCalender() {
-    final now = DateTime.now();
-    scrollMonthYear = DateFormat('MMMM, yyyy').format(now);
-    setState(() {});
-    DateTime lastMonday = now;
-    //Get last monday
-    for (int i = 0; i < 7; i++) {
-      final previousDate = now.subtract(Duration(days: i));
-      if (previousDate.weekday == DateTime.monday) {
-        lastMonday = previousDate;
-        break;
-      }
-    }
-    //Get last week
-    List<DateTime> lastWeekDateList = [];
-    for (int i = 0; i < 7; i++) {
-      final date = lastMonday.add(Duration(days: i - 7));
-      lastWeekDateList.add(date);
-    }
-    dateList.add(lastWeekDateList);
+  late DateTime selectedDate;
 
-    //Get current week
-    List<DateTime> thisWeekDateList = [];
-    for (int i = 0; i < 7; i++) {
-      final date = lastMonday.add(Duration(days: i));
-
-      thisWeekDateList.add(date);
-    }
-    dateList.add(thisWeekDateList);
-
-    //Get next week
-    List<DateTime> nextWeekDateList = [];
-    for (int i = 0; i < 7; i++) {
-      final date = lastMonday.add(Duration(days: i + 7));
-      nextWeekDateList.add(date);
-    }
-    dateList.add(nextWeekDateList);
-    setState(() {});
+  @override
+  void dispose() {
+    calenderPageController.dispose();
+    super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      initCalender();
-      calenderPageController.addListener(() {
-        if (calenderPageController.page == (dateList.length - 1)) {
-          getNextWeek();
-        }
-        if (calenderPageController.page == 0) {
-          getPreviousWeek();
-        }
-      });
+
+    selectedDate = widget.initialDate ?? DateTime.now();
+
+    dateList = _buildCalendarWeeks(selectedDate);
+
+    scrollMonthYear = DateFormat('MMMM, yyyy').format(selectedDate);
+
+    calenderPageController = PageController(initialPage: 1);
+
+    calenderPageController.addListener(() {
+      if (calenderPageController.page == (dateList.length - 1)) {
+        getNextWeek();
+      }
+
+      if (calenderPageController.page == 0) {
+        getPreviousWeek();
+      }
     });
+  }
+
+  List<List<DateTime>> _buildCalendarWeeks(DateTime date) {
+    DateTime lastMonday = date;
+
+    for (int i = 0; i < 7; i++) {
+      final previousDate = date.subtract(Duration(days: i));
+
+      if (previousDate.weekday == DateTime.monday) {
+        lastMonday = previousDate;
+        break;
+      }
+    }
+
+    final lastWeek = List.generate(
+      7,
+      (i) => lastMonday.add(Duration(days: i - 7)),
+    );
+
+    final thisWeek = List.generate(
+      7,
+      (i) => lastMonday.add(Duration(days: i)),
+    );
+
+    final nextWeek = List.generate(
+      7,
+      (i) => lastMonday.add(Duration(days: i + 7)),
+    );
+
+    return [
+      lastWeek,
+      thisWeek,
+      nextWeek,
+    ];
   }
 
   void getNextWeek() {
